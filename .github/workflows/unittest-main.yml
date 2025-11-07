@@ -1,0 +1,43 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore ./YahooDeveloperApiClient.sln
+
+    - name: Build
+      run: dotnet build ./YahooDeveloperApiClient.sln --no-restore
+
+    - name: Run tests with coverage
+      run: dotnet test ./YahooDeveloperApiClient.sln --no-build --verbosity normal --collect:"XPlat Code Coverage"
+
+    - name: Install ReportGenerator
+      run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+    - name: Generate coverage report in Markdown
+      run: |
+        reportgenerator -reports:**/TestResults/*/coverage.cobertura.xml \
+                        -targetdir:./CoverageReport \
+                        -reporttypes:MarkdownSummary
+    
+        cat ./CoverageReport/Summary.md >> $GITHUB_STEP_SUMMARY
