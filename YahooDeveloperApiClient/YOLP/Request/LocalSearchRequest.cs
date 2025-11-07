@@ -64,7 +64,7 @@ public class LocalSearchRequest
     /// ソート方法（rating, score, hybrid, review, kana, price, dist, geo, match）
     /// </summary>
     [DataMember(Name = "sort")]
-    public LocalSearchSort Sort { get; set; }
+    public LocalSearchSort? Sort { get; set; }
 
     // ページング
     /// <summary>
@@ -86,7 +86,7 @@ public class LocalSearchRequest
     /// 出力項目数（simple, standard, full）
     /// </summary>
     [DataMember(Name = "detail")]
-    public LocalSearchDetail Detail { get; set; }
+    public LocalSearchDetail? Detail { get; set; }
 
     /// <summary>
     /// JSONPとして出力する際のコールバック関数名（UTF-8でエンコード）

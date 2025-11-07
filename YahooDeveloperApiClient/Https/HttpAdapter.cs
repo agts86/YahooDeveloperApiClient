@@ -12,7 +12,7 @@ internal class HttpAdapter(HttpClient httpClient)
     /// <summary>
     /// HttpClientオブジェクト
     /// </summary>
-    private HttpClient HttpClient { get;} = httpClient;
+    private HttpClient HttpClient { get; } = httpClient;
 
     /// <summary>
     /// シリアライズオプション
@@ -43,7 +43,7 @@ internal class HttpAdapter(HttpClient httpClient)
     /// <param name="contentType">ContentType</param>
     /// <param name="authenticationHeaderValue">basic認証</param>
     /// <returns>レスポンス結果</returns>
-    internal async Task<T> PostAsync<T, Tbody>(string url, Tbody body, AuthenticationHeaderValue authenticationHeaderValue = null)  where T : class
+    internal async Task<T> PostAsync<T, Tbody>(string url, Tbody body, AuthenticationHeaderValue authenticationHeaderValue = null) where T : class
     {
         var request = new HttpRequestMessage
         {
@@ -62,7 +62,7 @@ internal class HttpAdapter(HttpClient httpClient)
     /// <param name="contentType">ContentType</param>
     /// <param name="authenticationHeaderValue">basic認証</param>
     /// <returns>レスポンス結果</returns>
-    internal async Task<T> PutAsync<T, Tbody>(string url, Tbody body, AuthenticationHeaderValue authenticationHeaderValue = null)  where T : class
+    internal async Task<T> PutAsync<T, Tbody>(string url, Tbody body, AuthenticationHeaderValue authenticationHeaderValue = null) where T : class
     {
         var request = new HttpRequestMessage
         {
@@ -81,7 +81,7 @@ internal class HttpAdapter(HttpClient httpClient)
     /// <param name="contentType">ContentType</param>
     /// <param name="authenticationHeaderValue">basic認証</param>
     /// <returns>レスポンス結果</returns>
-    internal async Task<T> DeleteAsync<T, Tbody>(string url, Tbody body, AuthenticationHeaderValue authenticationHeaderValue = null)  where T : class
+    internal async Task<T> DeleteAsync<T, Tbody>(string url, Tbody body, AuthenticationHeaderValue authenticationHeaderValue = null) where T : class
     {
         var request = new HttpRequestMessage
         {
