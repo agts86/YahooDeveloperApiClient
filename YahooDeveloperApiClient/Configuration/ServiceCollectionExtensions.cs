@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using YahooDeveloperApiClient.YOLP;
 
@@ -6,6 +7,7 @@ namespace YahooDeveloperApiClient.Configuration;
 /// <summary>
 /// Yahoo!ローカルサーチAPIのサービスコレクション拡張メソッド
 /// </summary>
+[ExcludeFromCodeCoverage]
 public static class ServiceCollectionExtensions
 {
     /// <summary>
