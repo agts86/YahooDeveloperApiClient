@@ -86,7 +86,7 @@ public class LocalSearchRequest
     /// 出力項目数（simple, standard, full）
     /// </summary>
     [DataMember(Name = "detail")]
-    public LocalSearchDetail? Detail { get; set; }
+    public YdfDetailLevel? Detail { get; set; }
 
     /// <summary>
     /// JSONPとして出力する際のコールバック関数名（UTF-8でエンコード）

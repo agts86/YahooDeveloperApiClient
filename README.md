@@ -68,7 +68,7 @@ public class LocalSearchService(IYOLPClient yolpClient, ILogger<LocalSearchServi
             Lon = lon,
             Dist = 2.0,
             Results = 10,
-            Detail = LocalSearchDetail.Standard
+            Detail = YdfDetailLevel.Standard
         };
 
         var result = await yolpClient.GetLocalSearchResultAsync(request);
@@ -95,7 +95,7 @@ var yolp = new YOLPClient(httpClient, appId: "<Your AppId>");
 | `Dist` | 探索距離（km、最大 20） |
 | `Results` | 取得件数（1〜100） |
 | `Sort` | `LocalSearchSort` で結果の並び替え |
-| `Detail` | 取得レベル（`Simple`, `Standard`, `Full`） |
+| `Detail` | 取得レベル（`YdfDetailLevel` の `Simple`, `Standard`, `Full`） |
 | `GenreCode` | YOLP 業種コード |
 | `Coupon`, `Parking`, `CreditCard`, `Image` | 各種フィルタ条件 |
 

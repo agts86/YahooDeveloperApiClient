@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Cysharp.Web;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,20 @@ public interface IYOLPClient
     /// <param name="genreCode">ジャンルコード</param>
     /// <returns>実行結果</returns>
     Task<LocalSearchResult> GetLocalSearchResultAsync(LocalSearchRequest request);
+
+    /// <summary>
+    /// ジオコーダAPIを実行して結果を取得する
+    /// </summary>
+    /// <param name="request">住所検索条件</param>
+    /// <returns>実行結果</returns>
+    Task<GeoCoderResult> GetGeoCoderResultAsync(GeoCoderRequest request);
+
+    /// <summary>
+    /// リバースジオコーダAPIを実行して結果を取得する
+    /// </summary>
+    /// <param name="request">座標</param>
+    /// <returns>実行結果</returns>
+    Task<ReverseGeoCoderResult> GetReverseGeoCoderResultAsync(ReverseGeoCoderRequest request);
 }
 
 /// <summary>
@@ -82,6 +97,39 @@ public class YOLPClient : IYOLPClient
     public async Task<LocalSearchResult> GetLocalSearchResultAsync(LocalSearchRequest request)
     {
         var baseUrl = $"{BaseUrl}/search/local/V1/localSearch?appid={AppId}&output=json";
-        return await Http.GetAsync<LocalSearchResult>(WebSerializer.ToQueryString(baseUrl, request));
+        return await Http.GetAsync<LocalSearchResult>(NormalizeQueryString(WebSerializer.ToQueryString(baseUrl, request)));
+    }
+
+    /// <summary>
+    /// ジオコーダAPIを実行して結果を取得する
+    /// </summary>
+    /// <param name="request">住所検索条件</param>
+    /// <returns>実行結果</returns>
+    public async Task<GeoCoderResult> GetGeoCoderResultAsync(GeoCoderRequest request)
+    {
+        var baseUrl = $"{BaseUrl}/geocode/V1/geoCoder?appid={AppId}&output=json";
+        return await Http.GetAsync<GeoCoderResult>(NormalizeQueryString(WebSerializer.ToQueryString(baseUrl, request)));
+    }
+
+    /// <summary>
+    /// リバースジオコーダAPIを実行して結果を取得する
+    /// </summary>
+    /// <param name="request">座標</param>
+    /// <returns>実行結果</returns>
+    public async Task<ReverseGeoCoderResult> GetReverseGeoCoderResultAsync(ReverseGeoCoderRequest request)
+    {
+        var baseUrl = $"{BaseUrl}/geoapi/V1/reverseGeoCoder?appid={AppId}&output=json";
+        return await Http.GetAsync<ReverseGeoCoderResult>(NormalizeQueryString(WebSerializer.ToQueryString(baseUrl, request)));
+    }
+
+    private static string NormalizeQueryString(string url)
+    {
+        var normalized = url.Replace("?&", "?");
+        while (normalized.Contains("&&", StringComparison.Ordinal))
+        {
+            normalized = normalized.Replace("&&", "&");
+        }
+
+        return normalized;
     }
 }

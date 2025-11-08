@@ -3,9 +3,9 @@ using System.Runtime.Serialization;
 namespace YahooDeveloperApiClient.YOLP.Request;
 
 /// <summary>
-/// 出力タイプ
+/// YDFの出力詳細レベル
 /// </summary>
-public enum LocalSearchDetail
+public enum YdfDetailLevel
 {
     [EnumMember(Value = "simple")]
     Simple,
