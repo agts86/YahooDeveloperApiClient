@@ -75,7 +75,7 @@ public class LocalSearchResult
         public GeometryInfo Geometry { get; set; }
 
         /// <summary>
-        /// カテゴリ情報
+        /// カテゴリ情報（複数指定可能）
         /// </summary>
         public string[] Category { get; set; }
 
@@ -85,7 +85,7 @@ public class LocalSearchResult
         public string Description { get; set; }
 
         /// <summary>
-        /// スタイル配列
+        /// スタイル情報
         /// </summary>
         public string[] Style { get; set; }
 
@@ -141,29 +141,14 @@ public class LocalSearchResult
             public string Address { get; set; }
 
             /// <summary>
-            /// 住所要素の配列
-            /// </summary>
-            public AddressElementInfo[] AddressElement { get; set; }
-
-            /// <summary>
             /// 住所コード（日本工業規格（JIS） X 0401 5けた）
             /// </summary>
             public string GovernmentCode { get; set; }
 
-            /// <summary>
-            /// 住所マッチングレベル
-            /// </summary>
-            public string AddressMatchingLevel { get; set; }
-
-            /// <summary>
+            /// <summary>                                               
             /// 最寄駅情報（最大3件）
             /// </summary>
             public StationInfo[] Station { get; set; }
-
-            /// <summary>
-            /// 店舗が入る場所情報
-            /// </summary>
-            public PlaceInfo Place { get; set; }
 
             /// <summary>
             /// 電話番号
@@ -191,29 +176,29 @@ public class LocalSearchResult
             public int ReviewCount { get; set; }
 
             /// <summary>
-            /// 作成日
+            /// クーポンの有無
             /// </summary>
-            public string CreateDate { get; set; }
+            public string CouponFlag { get; set; }
 
             /// <summary>
-            /// スマートフォンクーポンフラグ
+            /// クーポン情報
             /// </summary>
-            public string SmartPhoneCouponFlag { get; set; }
+            public CouponInfo[] Coupon { get; set; }
 
             /// <summary>
-            /// 営業状況
+            /// クレジットカード利用可否
             /// </summary>
-            public string OpenForBusiness { get; set; }
+            public string CreditcardFlag { get; set; }
 
             /// <summary>
-            /// 駐車場フラグ
+            /// 駐車場の有無
             /// </summary>
             public string ParkingFlag { get; set; }
 
             /// <summary>
-            /// クーポン配列
+            /// 評価（5点満点）
             /// </summary>
-            public string[] Coupon { get; set; }
+            public double Rating { get; set; }
 
             /// <summary>
             /// エリア情報
@@ -224,6 +209,36 @@ public class LocalSearchResult
             /// 詳細情報
             /// </summary>
             public DetailInfo Detail { get; set; }
+
+            /// <summary>
+            /// キープ数
+            /// </summary>
+            public string KeepCount { get; set; }
+
+            /// <summary>
+            /// 値段
+            /// </summary>
+            public int Price { get; set; }
+
+            /// <summary>
+            /// 平均予算
+            /// </summary>
+            public string AveragePriceComment { get; set; }
+
+            /// <summary>
+            /// 代表画像
+            /// </summary>
+            public string LeadImage { get; set; }
+
+            /// <summary>
+            /// 作成日時（YYYY-MM-DD HH:mm形式）
+            /// </summary>
+            public string CreateDate { get; set; }
+
+            /// <summary>
+            /// 更新日時（YYYY-MM-DD HH:mm形式）
+            /// </summary>
+            public string UpdateDate { get; set; }
 
             /// <summary>
             /// エリア情報
@@ -268,60 +283,54 @@ public class LocalSearchResult
                 public string Id { get; set; }
 
                 /// <summary>
+                /// 駅サブID
+                /// </summary>
+                public string SubId { get; set; }
+
+                /// <summary>
                 /// 駅名
                 /// </summary>
                 public string Name { get; set; }
 
                 /// <summary>
-                /// 代表路線名
+                /// 駅名読み（ひらがな）
+                /// </summary>
+                public string StaitionHiragana { get; set; }
+
+                /// <summary>
+                /// 路線名
                 /// </summary>
                 public string Railway { get; set; }
 
                 /// <summary>
-                /// 最寄りの駅出口名
-                /// </summary>
-                public string Exit { get; set; }
-
-                /// <summary>
-                /// 最寄りの駅出口ID
+                /// 駅出口ID
                 /// </summary>
                 public string ExitId { get; set; }
 
                 /// <summary>
-                /// 最寄駅出口からの距離（m）
+                /// 駅出口
+                /// </summary>
+                public string Exit { get; set; }
+
+                /// <summary>
+                /// 駅出口名称
+                /// </summary>
+                public string ExitName { get; set; }
+
+                /// <summary>
+                /// 距離（駅までの距離）
                 /// </summary>
                 public string Distance { get; set; }
 
                 /// <summary>
-                /// 最寄駅出口からの徒歩時間
+                /// 時間（分）（駅までの時間）
                 /// </summary>
                 public string Time { get; set; }
 
                 /// <summary>
-                /// 駅の位置情報
+                /// 駅備考
                 /// </summary>
-                public GeometryInfo Geometry { get; set; }
-            }
-
-            /// <summary>
-            /// 場所情報
-            /// </summary>
-            public class PlaceInfo
-            {
-                /// <summary>
-                /// フロア名
-                /// </summary>
-                public string FloorName { get; set; }
-
-                /// <summary>
-                /// 最適な地図の種別
-                /// </summary>
-                public string MapType { get; set; }
-
-                /// <summary>
-                /// この地域・拠点名を表示するのに適切な地図の縮尺
-                /// </summary>
-                public string MapScale { get; set; }
+                public string StationComment { get; set; }
             }
 
             /// <summary>
@@ -330,14 +339,86 @@ public class LocalSearchResult
             public class GenreInfo
             {
                 /// <summary>
-                /// 業種コード
+                /// ジャンル名
+                /// </summary>
+                public string Name { get; set; }
+
+                /// <summary>
+                /// ジャンルレベル
+                /// </summary>
+                public int Level { get; set; }
+
+                /// <summary>
+                /// ジャンルコード
                 /// </summary>
                 public string Code { get; set; }
 
                 /// <summary>
-                /// ジャンル名
+                /// ジャンルタイプ
+                /// </summary>
+                public string Type { get; set; }
+            }
+
+            /// <summary>
+            /// クーポン情報
+            /// </summary>
+            public class CouponInfo
+            {
+                /// <summary>
+                /// クーポン名
                 /// </summary>
                 public string Name { get; set; }
+
+                /// <summary>
+                /// クーポン内容
+                /// </summary>
+                public string Comment { get; set; }
+
+                /// <summary>
+                /// クーポン設定（1：自動更新、2：期間を指定）
+                /// </summary>
+                public int Setting { get; set; }
+
+                /// <summary>
+                /// クーポン開始日（YYYY-MM-DD形式）
+                /// </summary>
+                public string StartDay { get; set; }
+
+                /// <summary>
+                /// クーポン終了日（YYYY-MM-DD形式）
+                /// </summary>
+                public string EndDay { get; set; }
+
+                /// <summary>
+                /// クーポンモバイルフラグ
+                /// </summary>
+                public string MobileFlag { get; set; }
+
+                /// <summary>
+                /// 他媒体のクーポンフラグ
+                /// </summary>
+                public string OtherMediaFlag { get; set; }
+
+                /// <summary>
+                /// クーポン一覧URL（PC）
+                /// </summary>
+                public string ParentPcUrl { get; set; }
+
+                /// <summary>
+                /// クーポン一覧URL（スマートフォン）
+                /// </summary>
+                public string ParentSmartPhoneUrl { get; set; }
+
+                /// <summary>
+                /// クーポン一覧URL（モバイル）
+                /// </summary>
+                public string ParentMobileUrl { get; set; }
+
+                /// <summary>
+                /// 拡張データ
+                /// </summary>
+                [JsonExtensionData]
+                public Dictionary<string, JsonElement> Extra { get; init; } = new(StringComparer.OrdinalIgnoreCase);
             }
 
             /// <summary>
@@ -360,31 +441,6 @@ public class LocalSearchResult
                 /// </summary>
                 public string Floor { get; set; }
 
-                /// <summary>
-                /// 面積
-                /// </summary>
-                public string Area { get; set; }
-            }
-
-            /// <summary>
-            /// 住所要素情報
-            /// </summary>
-            public class AddressElementInfo
-            {
-                /// <summary>
-                /// 住所要素名
-                /// </summary>
-                public string Name { get; set; }
-
-                /// <summary>
-                /// 住所要素の読み仮名
-                /// </summary>
-                public string Kana { get; set; }
-
-                /// <summary>
-                /// 住所レベル（prefecture, city, oaza, aza など）
-                /// </summary>
-                public string Level { get; set; }
             }
 
             /// <summary>
@@ -398,39 +454,14 @@ public class LocalSearchResult
                 public string ZipCode { get; set; }
 
                 /// <summary>
-                /// 標高
+                /// 住所
                 /// </summary>
-                public string Altitude { get; set; }
+                public string DisplayAddress { get; set; }
 
                 /// <summary>
-                /// 著作権情報
+                /// 営業時間
                 /// </summary>
-                public string Copyright { get; set; }
-
-                /// <summary>
-                /// カセットオーナー
-                /// </summary>
-                public string CassetteOwner { get; set; }
-
-                /// <summary>
-                /// カセットヘッダー
-                /// </summary>
-                public string CassetteHeader { get; set; }
-
-                /// <summary>
-                /// カセットフッター
-                /// </summary>
-                public string CassetteFooter { get; set; }
-
-                /// <summary>
-                /// カセットオーナーURL
-                /// </summary>
-                public string CassetteOwnerUrl { get; set; }
-
-                /// <summary>
-                /// カセットオーナーモバイルURL
-                /// </summary>
-                public string CassetteOwnerMobileUrl { get; set; }
+                public string BusinessHour { get; set; }
 
                 /// <summary>
                 /// Fax番号
@@ -441,6 +472,11 @@ public class LocalSearchResult
                 /// アクセス方法
                 /// </summary>
                 public string Access1 { get; set; }
+
+                /// <summary>
+                /// 支払い方法
+                /// </summary>
+                public string Payment { get; set; }
 
                 /// <summary>
                 /// パソコンサイトのURL
@@ -461,6 +497,11 @@ public class LocalSearchResult
                 /// 画像情報
                 /// </summary>
                 public string Image1 { get; set; }
+
+                /// <summary>
+                /// カラオケがあるお店
+                /// </summary>
+                public bool? KaraokeFlag { get; set; }
 
                 /// <summary>
                 /// 拡張データ
